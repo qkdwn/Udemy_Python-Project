@@ -9,16 +9,39 @@ nr_letters= int(input("How many letters would you like in your password?\n"))
 nr_symbols = int(input(f"How many symbols would you like?\n"))
 nr_numbers = int(input(f"How many numbers would you like?\n"))
 
-#Easy Level
-password = ""
+#Easy Level (순서있는 비밀번호)
+#Ex) Sdfa12$%
+# password = ""
+
+# for char in range(1, nr_letters + 1):
+#     password += random.choice(letters)
+
+# for char in range(1, nr_symbols + 1):
+#     password += random.choice(symbols)
+
+# for char in range(1, nr_numbers + 1):
+#     password += random.choice(numbers)
+
+# print(password)
+
+#Hard Level (완전 무작위)
+#Ex) A2$fs!3g
+#shuffle을 활용해서 재정렬
+password_list = []
 
 for char in range(1, nr_letters + 1):
-    password += random.choice(letters)
+    password_list.append(random.choice(letters))
 
 for char in range(1, nr_symbols + 1):
-    password += random.choice(symbols)
+    password_list += random.choice(symbols)
 
 for char in range(1, nr_numbers + 1):
-    password += random.choice(numbers)
+    password_list += random.choice(numbers)
 
-print(password)
+random.shuffle(password_list)
+print(password_list)
+
+password = ""
+for char in password_list:
+    password += char
+print(f"Your password is : {password}")
